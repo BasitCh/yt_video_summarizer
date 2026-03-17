@@ -34,6 +34,7 @@ if st.button("Get Answer"):
       docs = loader.load()
     except (TranscriptsDisabled, NoTranscriptFound) as e:
       print(f"No Video Transcription Found: {e}")
+      st.error("No Video Transcription Found")
       exit()
 
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
