@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from langchain_community.document_loaders import YoutubeLoader
 from youtube_transcript_api import TranscriptsDisabled, NoTranscriptFound
@@ -11,6 +12,10 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableLambda
 
 load_dotenv()
+
+# Support Streamlit Cloud secrets
+if "OPENAI_API_KEY" in st.secrets:
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 st.set_page_config(page_title="Youtube QA Bot", layout="centered")
 st.title("Youtube QA Bot")
